@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sendi.weichat_operation_maintenance.dao.mapper.LogoutNotifyMapper">
+  <resultMap id="BaseResultMap" type="com.sendi.weichat_operation_maintenance.dao.entity.LogoutNotify">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="actiontime" jdbcType="VARCHAR" property="actiontime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sendi.weichat_operation_maintenance.dao.entity.LogoutNotify">
+    <result column="qr_code" jdbcType="LONGVARCHAR" property="qrCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, actiontime
+  </sql>
+  <sql id="Blob_Column_List">
+    qr_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from logout_notify
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from logout_notify
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sendi.weichat_operation_maintenance.dao.entity.LogoutNotify">
+    insert into logout_notify (id, actiontime, qr_code
+      )
+    values (#{id,jdbcType=INTEGER}, #{actiontime,jdbcType=VARCHAR}, #{qrCode,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sendi.weichat_operation_maintenance.dao.entity.LogoutNotify">
+    insert into logout_notify
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="actiontime != null">
+        actiontime,
+      </if>
+      <if test="qrCode != null">
+        qr_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="actiontime != null">
+        #{actiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null">
+        #{qrCode,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sendi.weichat_operation_maintenance.dao.entity.LogoutNotify">
+    update logout_notify
+    <set>
+      <if test="actiontime != null">
+        actiontime = #{actiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null">
+        qr_code = #{qrCode,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sendi.weichat_operation_maintenance.dao.entity.LogoutNotify">
+    update logout_notify
+    set actiontime = #{actiontime,jdbcType=VARCHAR},
+      qr_code = #{qrCode,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sendi.weichat_operation_maintenance.dao.entity.LogoutNotify">
+    update logout_notify
+    set actiontime = #{actiontime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
