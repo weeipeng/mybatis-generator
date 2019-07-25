@@ -11,7 +11,7 @@
 		</commentGenerator>
 	
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://172.168.201.31:3306/weichat_operation_maintenance?characterEncoding=utf-8" userId="datae" password="1234">
+			connectionURL="jdbc:mysql://172.168.201.31:3306/weichat_operation_maintenance?characterEncoding=utf-8" userId="datae" password="Sd_12345">
 		</jdbcConnection>
 
 		<javaTypeResolver>
@@ -38,22 +38,7 @@
 		</javaClientGenerator>
 
 
-		 <table tableName="logout_notify"
-			enableCountByExample="false"
-			enableUpdateByExample="false" enableDeleteByExample="false" 
-			enableSelectByExample="false" selectByExampleQueryId="false"/>
-
-		<table tableName="receive"
-			   enableCountByExample="false"
-			   enableUpdateByExample="false" enableDeleteByExample="false"
-			   enableSelectByExample="false" selectByExampleQueryId="false"/>
-
 		<table tableName="send"
-			   enableCountByExample="false"
-			   enableUpdateByExample="false" enableDeleteByExample="false"
-			   enableSelectByExample="false" selectByExampleQueryId="false"/>
-
-		<table tableName="userlist"
 			   enableCountByExample="false"
 			   enableUpdateByExample="false" enableDeleteByExample="false"
 			   enableSelectByExample="false" selectByExampleQueryId="false"/>

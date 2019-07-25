@@ -6,12 +6,13 @@
     <result column="actiontime" jdbcType="VARCHAR" property="actiontime" />
     <result column="user_wxid" jdbcType="VARCHAR" property="userWxid" />
     <result column="kf_wxid" jdbcType="VARCHAR" property="kfWxid" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sendi.weichat_operation_maintenance.dao.entity.Send">
     <result column="msg_text" jdbcType="LONGVARCHAR" property="msgText" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, actiontime, user_wxid, kf_wxid
+    id, actiontime, user_wxid, kf_wxid, flag
   </sql>
   <sql id="Blob_Column_List">
     msg_text
@@ -30,9 +31,11 @@
   </delete>
   <insert id="insert" parameterType="com.sendi.weichat_operation_maintenance.dao.entity.Send">
     insert into send (id, actiontime, user_wxid, 
-      kf_wxid, msg_text)
+      kf_wxid, flag, msg_text
+      )
     values (#{id,jdbcType=INTEGER}, #{actiontime,jdbcType=VARCHAR}, #{userWxid,jdbcType=VARCHAR}, 
-      #{kfWxid,jdbcType=VARCHAR}, #{msgText,jdbcType=LONGVARCHAR})
+      #{kfWxid,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, #{msgText,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.sendi.weichat_operation_maintenance.dao.entity.Send">
     insert into send
@@ -48,6 +51,9 @@
       </if>
       <if test="kfWxid != null">
         kf_wxid,
+      </if>
+      <if test="flag != null">
+        flag,
       </if>
       <if test="msgText != null">
         msg_text,
@@ -66,6 +72,9 @@
       <if test="kfWxid != null">
         #{kfWxid,jdbcType=VARCHAR},
       </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
       <if test="msgText != null">
         #{msgText,jdbcType=LONGVARCHAR},
       </if>
@@ -83,6 +92,9 @@
       <if test="kfWxid != null">
         kf_wxid = #{kfWxid,jdbcType=VARCHAR},
       </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
       <if test="msgText != null">
         msg_text = #{msgText,jdbcType=LONGVARCHAR},
       </if>
@@ -94,6 +106,7 @@
     set actiontime = #{actiontime,jdbcType=VARCHAR},
       user_wxid = #{userWxid,jdbcType=VARCHAR},
       kf_wxid = #{kfWxid,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
       msg_text = #{msgText,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -101,7 +114,8 @@
     update send
     set actiontime = #{actiontime,jdbcType=VARCHAR},
       user_wxid = #{userWxid,jdbcType=VARCHAR},
-      kf_wxid = #{kfWxid,jdbcType=VARCHAR}
+      kf_wxid = #{kfWxid,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

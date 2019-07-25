@@ -9,6 +9,8 @@ public class Send {
 
     private String kfWxid;
 
+    private Integer flag;
+
     private String msgText;
 
     public Integer getId() {
@@ -41,6 +43,14 @@ public class Send {
 
     public void setKfWxid(String kfWxid) {
         this.kfWxid = kfWxid == null ? null : kfWxid.trim();
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 
     public String getMsgText() {
